@@ -357,3 +357,6 @@ MVPでは大阪府内の一部地域を対象に、10〜20件程度の練習場�
 
 ### 11. 画面遷移図
 Figma: https://www.figma.com/design/Jn2jIfzJRH7kxbkuTt9r72/%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?node-id=0-1&t=2RoZllj37mxC3hxM-1
+
+### 12. ER図
+![ER図](https://i.gyazo.com/e6a40dc5c77f914b971ab20287ff39e1.png)
