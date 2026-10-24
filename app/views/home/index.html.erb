@@ -1,0 +1,20 @@
+<main class="min-h-screen w-full bg-green-50 flex flex-col items-center justify-center">
+  <section class="w-full max-w-5xl px-6 text-center">
+    <h1 class="mb-6 text-4xl font-bold text-green-800">
+      ゴルフ練習場検索サイト
+    </h1>
+
+    <p class="mb-4 text-xl text-gray-700">
+      大阪府内のゴルフ練習場を、もっと探しやすく。
+    </p>
+
+    <p class="mx-auto mb-10 max-w-2xl text-gray-600">
+      地域や料金を比較して、自分に合ったゴルフ練習場を探せるサービスです。
+      練習場の所在地、営業時間、料金、設備などの情報をまとめて確認できます。
+    </p>
+
+    <%= link_to "練習場を探す",
+                golf_ranges_path,
+                class: "inline-block rounded-lg bg-green-700 px-8 py-4 font-semibold text-white hover:bg-green-800" %>
+  </section>
+</main>
