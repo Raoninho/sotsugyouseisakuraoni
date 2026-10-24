@@ -80,6 +80,4 @@ test:
 #
 production:
   <<: *default
-  database: golf_range_app_production
-  username: golf_range_app
-  password: <%= ENV["GOLF_RANGE_APP_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>
