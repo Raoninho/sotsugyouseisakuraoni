@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  city: MyString
+  address: MyString
+  opening_hours: MyText
+  parking_available: false
+  floor_count: 1
+  booth_count: 1
+  yard_length: 1
+  official_website_url: MyString
+  last_verified_on: 2026-10-25
+  source_url: MyString
+
+two:
+  name: MyString
+  city: MyString
+  address: MyString
+  opening_hours: MyText
+  parking_available: false
+  floor_count: 1
+  booth_count: 1
+  yard_length: 1
+  official_website_url: MyString
+  last_verified_on: 2026-10-25
+  source_url: MyString
