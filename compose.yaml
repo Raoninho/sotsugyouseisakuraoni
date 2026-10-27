@@ -23,7 +23,9 @@ services:
       - "3000:3000"
     environment:
       RAILS_ENV: development
-      DATABASE_URL: postgres://postgres:postgres@db:5432/sotsugyouseisakuraoni_development
+      PGHOST: db
+      PGUSER: postgres
+      PGPASSWORD: postgres
     depends_on:
       db:
         condition: service_healthy
