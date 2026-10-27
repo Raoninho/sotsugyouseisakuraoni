@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  golf_practice_range: one
+  day_type: 1
+  price_per_ball: 9.99
+  floor_number: 1
+  start_time: 2026-10-27 13:18:00
+  end_time: 2026-10-27 13:18:00
+
+two:
+  golf_practice_range: two
+  day_type: 1
+  price_per_ball: 9.99
+  floor_number: 1
+  start_time: 2026-10-27 13:18:00
+  end_time: 2026-10-27 13:18:00

@@ -10,9 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_25_074949) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_27_131800) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "ball_prices", force: :cascade do |t|
+    t.bigint "golf_practice_range_id", null: false
+    t.integer "day_type", null: false
+    t.decimal "price_per_ball", precision: 6, scale: 2, null: false
+    t.integer "floor_number"
+    t.time "start_time"
+    t.time "end_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["golf_practice_range_id"], name: "index_ball_prices_on_golf_practice_range_id"
+  end
 
   create_table "golf_practice_ranges", force: :cascade do |t|
     t.string "name", null: false
@@ -29,4 +41,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_25_074949) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_foreign_key "ball_prices", "golf_practice_ranges"
 end
