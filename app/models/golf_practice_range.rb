@@ -2,6 +2,7 @@ class GolfPracticeRange < ApplicationRecord
   validates :name, :city, :address, presence: true
 
   has_many :ball_prices, dependent: :destroy
+  has_one_attached :image
 
   def safe_official_website_url
     url = official_website_url
