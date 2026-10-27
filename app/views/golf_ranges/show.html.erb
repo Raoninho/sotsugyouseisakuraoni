@@ -1,11 +1,11 @@
 
-<div class="mx-auto max-w-4xl px-4 py-10">
+<div class="mx-auto max-w-4xl px-4 py-6 sm:px-6 sm:py-10">
   <%= link_to "← 練習場一覧に戻る",
       golf_ranges_path,
       class: "mb-6 inline-block text-sm font-medium text-green-700 hover:underline" %>
 
-  <div class="rounded-xl border border-gray-100 bg-white p-6 shadow-sm">
-    <h1 class="text-3xl font-bold text-green-900">
+  <div class="min-w-0 rounded-xl border border-gray-100 bg-white p-4 shadow-sm sm:p-6">
+    <h1 class="break-words text-2xl font-bold text-green-900 sm:text-3xl">
       <%= @golf_range.name %>
     </h1>
 
@@ -84,18 +84,18 @@
           </h3>
 
           <% if prices.any? %>
-            <div class="overflow-x-auto">
-              <table class="w-full border-collapse text-sm">
+            <div class="w-full max-w-full overflow-x-auto">
+                <table class="w-full min-w-0 border-collapse text-xs sm:text-sm">
                 <thead class="bg-green-50">
                   <tr>
-                    <th class="border border-gray-600 px-3 py-3 text-left">
-                      階数
+                    <th class="border border-gray-600 px-2 py-2 text-left sm:px-3 sm:py-3">
+                        階数
                     </th>
-                    <th class="border border-gray-600 px-3 py-3 text-left">
-                      時間帯
+                    <th class="border border-gray-600 px-2 py-2 text-left sm:px-3 sm:py-3">
+                        時間帯
                     </th>
-                    <th class="border border-gray-600 px-3 py-3 text-left">
-                      料金
+                    <th class="border border-gray-600 px-2 py-2 text-left sm:px-3 sm:py-3">
+                        料金
                     </th>
                   </tr>
                 </thead>
@@ -103,11 +103,11 @@
                 <tbody>
                   <% prices.each do |price| %>
                     <tr>
-                      <td class="border border-gray-600 px-3 py-3">
+                      <td class="border border-gray-600 px-2 py-2 sm:px-3 sm:py-3">
                         <%= price.floor_number ? "#{price.floor_number}階" : "全階共通" %>
                       </td>
 
-                      <td class="border border-gray-600 px-3 py-3">
+                      <td class="border border-gray-600 px-2 py-2 sm:px-3 sm:py-3">
                         <% if price.start_time && price.end_time %>
                           <%= "#{price.start_time.strftime('%H:%M')}〜#{price.end_time.strftime('%H:%M')}" %>
                         <% else %>
