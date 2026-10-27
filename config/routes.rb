@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   root "home#index"
 
   # ゴルフ練習場一覧ページ
-  resources :golf_ranges, only: [ :index ]
+  resources :golf_ranges, only: %i[index show]
+
 
   # ヘルスチェック
   get "up" => "rails/health#show", as: :rails_health_check
