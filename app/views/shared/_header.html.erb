@@ -1,0 +1,28 @@
+<header style="background-color: #1c6323;" class="text-white shadow-md">
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4" style="height: 45px;">
+
+    <%= link_to root_path, class: "flex items-center gap-3 text-lg font-bold" do %>
+      <%= image_tag "/golf_search_logo.png",
+          alt: "ゴルフ練習場検索ロゴ",
+          width: 40,
+          height: 40,
+          style: "width: 40px; height: 40px; object-fit: contain;" %>
+
+      <span>ゴルフ練習場検索</span>
+    <% end %>
+
+    <nav aria-label="メインナビゲーション">
+      <ul class="flex items-center gap-4 text-sm font-medium">
+        <li>
+          <%= link_to "トップ", root_path,
+              class: "hover:text-emerald-200" %>
+        </li>
+        <li>
+          <%= link_to "練習場一覧", golf_ranges_path,
+              class: "hover:text-emerald-200" %>
+        </li>
+      </ul>
+    </nav>
+
+  </div>
+</header>
