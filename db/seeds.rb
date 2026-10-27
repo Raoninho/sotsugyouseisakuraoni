@@ -27,7 +27,7 @@ golf_ranges = [
         last_verified_on: Date.current,
         source_url: "https://sports-service.mizuno.jp/golf/tsurumi"
     },
-    #河内ゴルフクラブ
+    # 河内ゴルフクラブ
     {
         name: "河内ゴルフ倶楽部",
         city: "東大阪市",
@@ -55,7 +55,7 @@ golf_ranges = [
         last_verified_on: Date.new(2026, 10, 27),
         source_url: "https://itakano-golf.com/"
     },
-    #PXG大阪ドライビングレンジ
+    # PXG大阪ドライビングレンジ
     {
         name: "PXG大阪ドライビングレンジ",
         city: "大東市",
@@ -69,7 +69,7 @@ golf_ranges = [
         last_verified_on: Date.new(2026, 10, 27),
         source_url: "https://www.pxgosaka.jp/facility"
     },
-    #星田ゴルフセンター
+    # 星田ゴルフセンター
     {
         name: "星田ゴルフセンター",
         city: "交野市",
@@ -83,7 +83,7 @@ golf_ranges = [
         last_verified_on: Date.new(2026, 10, 27),
         source_url: "https://www.hoshida-gc.com/facility.html"
     },
-    #忍ケ丘ゴルフセンター
+    # 忍ケ丘ゴルフセンター
     {
         name: "忍ケ丘ゴルフセンター",
         city: "四條畷市",
@@ -97,7 +97,7 @@ golf_ranges = [
         last_verified_on: Date.new(2026, 10, 27),
         source_url: "https://shinobugaokagolfcenter.com/facility/"
     },
-    #旭東ゴルフガーデン
+    # 旭東ゴルフガーデン
     {
         name: "旭東ゴルフガーデン",
         city: "大阪市旭区",
@@ -111,7 +111,7 @@ golf_ranges = [
         last_verified_on: Date.new(2026, 10, 27),
         source_url: "https://sugita-j.com/business/golf/"
     },
-    #桜宮ゴルフクラブ
+    # 桜宮ゴルフクラブ
     {
         name: "桜宮ゴルフクラブ",
         city: "大阪市都島区",
@@ -139,7 +139,7 @@ golf_ranges = [
         last_verified_on: Date.new(2026, 10, 27),
         source_url: "https://www.n-golfclub.com/cont6/main.html"
     },
-    
+
     # 阪神ゴルフセンター 大正店
     {
         name: "阪神ゴルフセンター 大正店",
@@ -154,7 +154,7 @@ golf_ranges = [
         last_verified_on: Date.new(2026, 10, 27),
         source_url: "https://www.hanshingolf.com/taisyo/clubhouse/dakyu.php"
     },
-    
+
     # 松原インターゴルフ
     {
         name: "松原インターゴルフ",
@@ -183,7 +183,7 @@ golf_ranges = [
         last_verified_on: Date.new(2026, 10, 27),
         source_url: "https://dr.golfdigest.co.jp/dr_detail/id=2112"
     },
-    
+
     # 阪奈ゴルフ
     {
         name: "阪奈ゴルフ",
@@ -212,7 +212,7 @@ golf_ranges = [
         last_verified_on: Date.new(2026, 10, 27),
         source_url: "https://www.hanshingolf.com/suminoe/clubhouse/dakyu.php"
     },
-    
+
     # SKゴルフガーデン
     {
         name: "SKゴルフガーデン",
@@ -226,7 +226,7 @@ golf_ranges = [
         official_website_url: "https://sk-golf.jp/",
         last_verified_on: Date.new(2026, 10, 27),
         source_url: "https://sk-golf.jp/about.html"
-    },
+    }
 
 
 
