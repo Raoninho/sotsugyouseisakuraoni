@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Golf Range App" %></title>
+    <title><%= content_for(:title) || "ゴルフ練習場検索" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
@@ -18,7 +18,11 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="min-h-screen">
-    <%= yield %>
+  <body class="min-h-screen bg-gray-50 text-gray-800">
+    <%= render "shared/header" %>
+
+    <main class="mx-auto w-full max-w-6xl px-4 py-8">
+      <%= yield %>
+    </main>
   </body>
 </html>
