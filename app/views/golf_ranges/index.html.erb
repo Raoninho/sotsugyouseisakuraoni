@@ -7,9 +7,42 @@
     大阪府内のゴルフ練習場を比較できます。
   </p>
 
+
   <p class="mb-6 text-sm text-gray-500">
     全<%= @golf_ranges.size %>件
   </p>
+
+  
+<%# 地域検索フォーム %>
+<div class="mb-6 rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
+  <%= form_with url: golf_ranges_path, method: :get, local: true do %>
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-end">
+
+      <div class="w-full sm:max-w-xs">
+        <%= label_tag :city, "地域を選択", class: "mb-2 block text-sm font-semibold text-gray-700" %>
+
+        <%= select_tag :city,
+            options_for_select(
+              GolfPracticeRange.distinct.order(:city).pluck(:city),
+              params[:city]
+            ),
+            include_blank: "すべての地域",
+            class: "w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm" %>
+      </div>
+
+      <div class="flex gap-3">
+        <%= submit_tag "検索",
+            class: "rounded-lg bg-green-700 px-6 py-3 text-sm font-semibold text-white hover:bg-green-800 cursor-pointer" %>
+
+        <%= link_to "リセット",
+            golf_ranges_path,
+            class: "rounded-lg border border-gray-300 bg-white px-6 py-3 text-sm font-semibold text-gray-700 hover:bg-gray-100" %>
+      </div>
+
+    </div>
+  <% end %>
+</div>
+
 
   <% if @golf_ranges.any? %>
     <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -68,11 +101,15 @@
         </div>
       <% end %>
     </div>
+  
   <% else %>
     <div class="rounded-lg bg-white p-8 text-center shadow-sm">
       <p class="text-gray-600">
-        現在、登録されている練習場はありません。
+        <% if params[:city].present? %>
+          該当する地域の練習場はありません。
+        <% else %>
+          現在、登録されている練習場はありません。
+        <% end %>
       </p>
     </div>
   <% end %>
-</div>
