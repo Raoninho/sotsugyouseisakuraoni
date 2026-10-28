@@ -4,6 +4,8 @@ class GolfRangesController < ApplicationController
                    .includes(:ball_prices)
                    .with_attached_image
                    .order(:name)
+
+    @golf_ranges = @golf_ranges.where(city: params[:city]) if params[:city].present?
   end
 
   def show
