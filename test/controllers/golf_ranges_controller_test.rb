@@ -60,7 +60,7 @@ class GolfRangesControllerTest < ActionDispatch::IntegrationTest
     get golf_ranges_url, params: { sort: "price_asc" }
 
     assert_response :success
-    assert_equal [@yao.name, @higashiosaka.name],
+    assert_equal [ @yao.name, @higashiosaka.name ],
                  displayed_range_names
   end
 
@@ -72,7 +72,7 @@ class GolfRangesControllerTest < ActionDispatch::IntegrationTest
     get golf_ranges_url, params: { sort: "price_asc" }
 
     assert_response :success
-    assert_equal [@higashiosaka.name, @yao.name],
+    assert_equal [ @higashiosaka.name, @yao.name ],
                  displayed_range_names
   end
 
@@ -82,7 +82,7 @@ class GolfRangesControllerTest < ActionDispatch::IntegrationTest
     get golf_ranges_url, params: { sort: "price_asc" }
 
     assert_response :success
-    assert_equal [@yao.name, @higashiosaka.name],
+    assert_equal [ @yao.name, @higashiosaka.name ],
                  displayed_range_names
   end
 
@@ -101,7 +101,7 @@ class GolfRangesControllerTest < ActionDispatch::IntegrationTest
         params: { city: "東大阪市", sort: "price_asc" }
 
     assert_response :success
-    assert_equal [another_range.name, @higashiosaka.name],
+    assert_equal [ another_range.name, @higashiosaka.name ],
                  displayed_range_names
   end
 
@@ -112,7 +112,7 @@ class GolfRangesControllerTest < ActionDispatch::IntegrationTest
     get golf_ranges_url, params: { sort: "price_asc" }
 
     assert_response :success
-    assert_equal [@yao.name, @higashiosaka.name].sort,
+    assert_equal [ @yao.name, @higashiosaka.name ].sort,
                  displayed_range_names
   end
 
