@@ -260,6 +260,34 @@ class GolfRangesControllerTest < ActionDispatch::IntegrationTest
     assert_select "a", text: "公式サイトを見る", count: 0
   end
 
+  test "詳細ページに最終更新日が表示される" do
+    @higashiosaka.update!(
+      updated_at: Time.zone.local(2026, 10, 27, 12, 0, 0)
+    )
+
+    get golf_range_url(@higashiosaka)
+
+    assert_response :success
+    assert_select "p", text: "最終更新日"
+    assert_select "p", text: "2026年10月27日"
+  end
+
+  test "施設情報を更新すると最終更新日も更新される" do
+    travel_to Time.zone.local(2026, 10, 27, 12, 0, 0) do
+      @higashiosaka.touch
+    end
+
+    travel_to Time.zone.local(2026, 10, 31, 12, 0, 0) do
+      @higashiosaka.update!(name: "更新後の練習場")
+    end
+
+    get golf_range_url(@higashiosaka)
+
+    assert_response :success
+    assert_select "h1", text: "更新後の練習場"
+    assert_select "p", text: "2026年10月31日"
+  end
+
 
   private
 

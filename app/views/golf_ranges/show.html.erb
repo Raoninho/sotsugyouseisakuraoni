@@ -53,7 +53,7 @@
           </p>
         </div>
 
-        <div>
+        <div class="sm:col-start-2">
           <p class="text-sm text-gray-500">駐車場</p>
           <p class="text-gray-800">
             <% if @golf_range.parking_available.nil? %>
@@ -67,6 +67,15 @@
         </div>
       </div>
     </section>
+
+    
+    <div class="sm:col-start-2">
+      <p class="text-sm text-gray-500">最終更新日</p>
+      <p class="text-gray-800">
+        <%= @golf_range.updated_at.strftime("%Y年%m月%d日") %>
+      </p>
+    </div>
+
 
     <section class="mt-8">
       <h2 class="border-b border-gray-700 pb-2 text-lg font-bold text-gray-900">
