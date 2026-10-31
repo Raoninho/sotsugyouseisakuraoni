@@ -214,6 +214,53 @@ class GolfRangesControllerTest < ActionDispatch::IntegrationTest
     assert_select "td", text: "9円/球"
   end
 
+
+  test "公式サイトへのリンクが表示される" do
+    @higashiosaka.update!(
+      official_website_url: "https://example.com/golf"
+    )
+
+    get golf_range_url(@higashiosaka)
+
+    assert_response :success
+    assert_select "a[href='https://example.com/golf']",
+                  text: "公式サイトを見る"
+  end
+
+  test "公式サイトが新しいタブで開く" do
+    @higashiosaka.update!(
+      official_website_url: "https://example.com/golf"
+    )
+
+    get golf_range_url(@higashiosaka)
+
+    assert_response :success
+    assert_select "a[href='https://example.com/golf'][target='_blank'][rel='noopener noreferrer']"
+  end
+
+  test "公式サイトURLが未登録の場合はリンクを表示しない" do
+    @higashiosaka.update!(
+      official_website_url: nil
+    )
+
+    get golf_range_url(@higashiosaka)
+
+    assert_response :success
+    assert_select "a", text: "公式サイトを見る", count: 0
+  end
+
+  test "不正な公式サイトURLの場合はリンクを表示しない" do
+    @higashiosaka.update!(
+      official_website_url: "javascript:alert(1)"
+    )
+
+    get golf_range_url(@higashiosaka)
+
+    assert_response :success
+    assert_select "a", text: "公式サイトを見る", count: 0
+  end
+
+
   private
 
   def add_price(range, price, day_type: :weekday)
