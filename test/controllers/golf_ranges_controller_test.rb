@@ -116,6 +116,37 @@ class GolfRangesControllerTest < ActionDispatch::IntegrationTest
                  displayed_range_names
   end
 
+  test "料金未登録の施設も一覧に表示される" do
+    get golf_ranges_url
+
+    assert_response :success
+    assert_select "h2", text: @higashiosaka.name
+    assert_select "p", text: "情報なし"
+  end
+
+  test "料金未登録でも詳細ページが正常に表示される" do
+    get golf_range_url(@higashiosaka)
+
+    assert_response :success
+    assert_select "h1", text: @higashiosaka.name
+    assert_select "p", text: /料金情報が登録されていません/
+  end
+
+  test "平日料金のみ登録されている場合は休日に情報なしと表示される" do
+    @higashiosaka.ball_prices.create!(
+      day_type: :weekday,
+      price_per_ball: 10
+    )
+
+    get golf_range_url(@higashiosaka)
+
+    assert_response :success
+    assert_select "h3", text: "平日"
+    assert_select "h3", text: "土日祝"
+    assert_select "p", text: "情報なし"
+    assert_select "td", text: /10円\/球/
+  end
+
   private
 
   def add_price(range, price, day_type: :weekday)
