@@ -82,7 +82,7 @@
             距離：<%= range.yard_length ? "#{range.yard_length}ヤード" : "情報なし" %>
           </p>
 
-          <% min_price = range.ball_prices.map(&:price_per_ball).compact.min %>
+          <% min_price = range.minimum_ball_price %>
 
           <div class="mt-5 border-t border-gray-100 pt-4">
             <p class="text-sm text-gray-500">
