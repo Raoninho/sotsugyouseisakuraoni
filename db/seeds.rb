@@ -243,3 +243,5 @@ golf_ranges.each do |attributes|
 end
 
 puts "練習場登録件数: #{GolfPracticeRange.count}件"
+
+load Rails.root.join("db/seeds/ball_prices.rb")
