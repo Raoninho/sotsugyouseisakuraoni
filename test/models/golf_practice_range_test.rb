@@ -35,6 +35,57 @@ class GolfPracticeRangeTest < ActiveSupport::TestCase
     assert_includes range.errors[:address], "can't be blank"
   end
 
+  test "複数の料金から最安値を取得できる" do
+    range = valid_range
+    range.save!
+
+    range.ball_prices.create!(
+      day_type: :weekday,
+      floor_number: 1,
+      price_per_ball: 10
+    )
+
+    range.ball_prices.create!(
+      day_type: :weekday,
+      floor_number: 2,
+      price_per_ball: 8
+    )
+
+    range.ball_prices.create!(
+      day_type: :weekend,
+      floor_number: 1,
+      price_per_ball: 12
+    )
+
+    assert_equal BigDecimal("8"), range.minimum_ball_price
+  end
+
+  test "時間帯が異なる料金も最安値の対象になる" do
+    range = valid_range
+    range.save!
+
+    range.ball_prices.create!(
+      day_type: :weekday,
+      price_per_ball: 10
+    )
+
+    range.ball_prices.create!(
+      day_type: :weekend,
+      price_per_ball: 7,
+      start_time: "18:00",
+      end_time: "22:00"
+    )
+
+    assert_equal BigDecimal("7"), range.minimum_ball_price
+  end
+
+  test "料金情報がない場合はnilを返す" do
+    range = valid_range
+    range.save!
+
+    assert_nil range.minimum_ball_price
+  end
+
   private
 
   def valid_range
