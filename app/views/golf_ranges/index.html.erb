@@ -30,6 +30,23 @@
             class: "w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm" %>
       </div>
 
+        
+      <%# 料金順の並び替え %>
+      <div class="w-full sm:max-w-xs">
+        <%= label_tag :sort, "並び替え", class: "mb-2 block text-sm font-semibold text-gray-700" %>
+
+        <%= select_tag :sort,
+          options_for_select(
+            [
+              ["名前順", ""],
+              ["ボール単価が安い順", "price_asc"]
+            ],
+            params[:sort]
+          ),
+          class: "w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm" %>
+      </div>
+    
+
       <div class="flex gap-3">
         <%= submit_tag "検索",
             class: "rounded-lg bg-green-700 px-6 py-3 text-sm font-semibold text-white hover:bg-green-800 cursor-pointer" %>
