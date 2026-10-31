@@ -73,66 +73,74 @@
         ボール料金
       </h2>
 
-      <% [
-        ["平日", @golf_range.ball_prices.select(&:weekday?)],
-        ["土日祝", @golf_range.ball_prices.select(&:weekend?)]
-      ].each do |label, prices| %>
-
-        <div class="mt-6">
-          <h3 class="mb-3 font-semibold text-green-800">
-            <%= label %>
-          </h3>
-
-          <% if prices.any? %>
-            <div class="w-full max-w-full overflow-x-auto">
-                <table class="w-full min-w-0 border-collapse text-xs sm:text-sm">
-                <thead class="bg-green-50">
-                  <tr>
-                    <th class="border border-gray-600 px-2 py-2 text-left sm:px-3 sm:py-3">
-                        階数
-                    </th>
-                    <th class="border border-gray-600 px-2 py-2 text-left sm:px-3 sm:py-3">
-                        時間帯
-                    </th>
-                    <th class="border border-gray-600 px-2 py-2 text-left sm:px-3 sm:py-3">
-                        料金
-                    </th>
-                  </tr>
-                </thead>
-
-                <tbody>
-                  <% prices.each do |price| %>
-                    <tr>
-                      <td class="border border-gray-600 px-2 py-2 sm:px-3 sm:py-3">
-                        <%= price.floor_number ? "#{price.floor_number}階" : "全階共通" %>
-                      </td>
-
-                      <td class="border border-gray-600 px-2 py-2 sm:px-3 sm:py-3">
-                        <% if price.start_time && price.end_time %>
-                          <%= "#{price.start_time.strftime('%H:%M')}〜#{price.end_time.strftime('%H:%M')}" %>
-                        <% else %>
-                          終日
-                        <% end %>
-                      </td>
-
-                      <td class="border border-gray-600 px-3 py-3 font-medium">
-                        <%= number_with_precision(
-                            price.price_per_ball,
-                            precision: 2,
-                            strip_insignificant_zeros: true
-                        ) %>円/球
-                      </td>
-                    </tr>
-                  <% end %>
-                </tbody>
-              </table>
-            </div>
-          <% else %>
-            <p class="text-sm text-gray-500">
-              情報なし
-            </p>
-          <% end %>
+      <% if @golf_range.ball_prices.empty? %>
+        <div class="mt-4 rounded-lg bg-gray-50 p-4">
+          <p class="text-sm text-gray-600">
+            情報なし（料金情報が登録されていません）
+          </p>
         </div>
+      <% else %>
+        <% [
+          [ "平日", @golf_range.ball_prices.select(&:weekday?)],
+          [ "土日祝", @golf_range.ball_prices.select(&:weekend?)]
+        ].each do |label, prices| %>
+
+          <div class="mt-6">
+            <h3 class="mb-3 font-semibold text-green-800">
+              <%= label %>
+            </h3>
+
+            <% if prices.any? %>
+              <div class="w-full max-w-full overflow-x-auto">
+                  <table class="w-full min-w-0 border-collapse text-xs sm:text-sm">
+                  <thead class="bg-green-50">
+                    <tr>
+                      <th class="border border-gray-600 px-2 py-2 text-left sm:px-3 sm:py-3">
+                          階数
+                      </th>
+                      <th class="border border-gray-600 px-2 py-2 text-left sm:px-3 sm:py-3">
+                          時間帯
+                      </th>
+                      <th class="border border-gray-600 px-2 py-2 text-left sm:px-3 sm:py-3">
+                          料金
+                      </th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <% prices.each do |price| %>
+                      <tr>
+                        <td class="border border-gray-600 px-2 py-2 sm:px-3 sm:py-3">
+                          <%= price.floor_number ? "#{price.floor_number}階" : "全階共通" %>
+                        </td>
+
+                        <td class="border border-gray-600 px-2 py-2 sm:px-3 sm:py-3">
+                          <% if price.start_time && price.end_time %>
+                            <%= "#{price.start_time.strftime('%H:%M')}〜#{price.end_time.strftime('%H:%M')}" %>
+                          <% else %>
+                            終日
+                          <% end %>
+                        </td>
+
+                        <td class="border border-gray-600 px-3 py-3 font-medium">
+                          <%= number_with_precision(
+                              price.price_per_ball,
+                              precision: 2,
+                              strip_insignificant_zeros: true
+                          ) %>円/球
+                        </td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            <% else %>
+              <p class="text-sm text-gray-500">
+                情報なし
+              </p>
+            <% end %>
+          </div>
+        <% end %>
       <% end %>
     </section>
 
