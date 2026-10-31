@@ -147,6 +147,73 @@ class GolfRangesControllerTest < ActionDispatch::IntegrationTest
     assert_select "td", text: /10円\/球/
   end
 
+  test "平日と休日の料金を区別して表示できる" do
+    add_price(@higashiosaka, 8, day_type: :weekday)
+    add_price(@higashiosaka, 12, day_type: :weekend)
+
+    get golf_range_url(@higashiosaka)
+
+    assert_response :success
+    assert_select "h3", text: "平日"
+    assert_select "h3", text: "土日祝"
+    assert_select "td", text: "8円/球"
+    assert_select "td", text: "12円/球"
+  end
+
+  test "階数ごとの料金を表示できる" do
+    @higashiosaka.ball_prices.create!(
+      day_type: :weekday,
+      floor_number: 1,
+      price_per_ball: 10
+    )
+
+    @higashiosaka.ball_prices.create!(
+      day_type: :weekday,
+      floor_number: 2,
+      price_per_ball: 8
+    )
+
+    get golf_range_url(@higashiosaka)
+
+    assert_response :success
+    assert_select "td", text: "1階"
+    assert_select "td", text: "2階"
+    assert_select "td", text: "10円/球"
+    assert_select "td", text: "8円/球"
+  end
+
+  test "時間帯ごとの料金を表示できる" do
+    @higashiosaka.ball_prices.create!(
+      day_type: :weekday,
+      price_per_ball: 7,
+      start_time: "18:00",
+      end_time: "22:00"
+    )
+
+    get golf_range_url(@higashiosaka)
+
+    assert_response :success
+    assert_select "td", text: "18:00〜22:00"
+    assert_select "td", text: "7円/球"
+  end
+
+  test "終日と全階共通の料金を表示できる" do
+    @higashiosaka.ball_prices.create!(
+      day_type: :weekday,
+      floor_number: nil,
+      start_time: nil,
+      end_time: nil,
+      price_per_ball: 9
+    )
+
+    get golf_range_url(@higashiosaka)
+
+    assert_response :success
+    assert_select "td", text: "全階共通"
+    assert_select "td", text: "終日"
+    assert_select "td", text: "9円/球"
+  end
+
   private
 
   def add_price(range, price, day_type: :weekday)
